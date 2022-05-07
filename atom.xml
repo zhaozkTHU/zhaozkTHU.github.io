@@ -6,7 +6,7 @@
   <link href="http://zhaozekai.com/atom.xml" rel="self"/>
   
   <link href="http://zhaozekai.com/"/>
-  <updated>2022-05-02T01:20:27.507Z</updated>
+  <updated>2022-05-07T02:42:13.254Z</updated>
   <id>http://zhaozekai.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vector</title>
+    <link href="http://zhaozekai.com/uncategorized/vector/"/>
+    <id>http://zhaozekai.com/uncategorized/vector/</id>
+    <published>2022-05-07T01:57:01.000Z</published>
+    <updated>2022-05-07T02:42:13.254Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h2><p>vector是封装了动态大小数组的容器，能够存放各种类型的对象</p><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;vector&gt;</span></span><br><span class="hljs-keyword">using</span> std::vector;<br></code></pre></td></tr></table></figure><h2 id="基本函数"><a href="#基本函数" class="headerlink" title="基本函数"></a>基本函数</h2><h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><ul><li><code>vector()</code>:默认构造函数，创建空vector，长度为0</li><li><code>vector(int size)</code>:创建元素个数为size的vector</li><li><code>vector(int size,const t&amp; t)</code>:创建vector，元素个数为size，每个均为t</li><li><code>vector(const vector&amp;)</code>:拷贝构造函数</li></ul><h3 id="增加函数"><a href="#增加函数" class="headerlink" title="增加函数"></a>增加函数</h3><ul><li><code>push_back(const T&amp; x)</code>：向量尾部增加元素x</li><li><code>insert(iterator it, const T&amp; x)</code>:向量中迭代器指向的元素前增加一个元素x</li><li><code>insert(iterator it, int n, const T&amp; x)</code>:增加n个相同的元素x</li><li><code>insert(iterator it,const_iterator first,const_iterator last)</code>:迭代器指向元素前插入另一个相同类型向量[first,last)间的数据</li></ul><h3 id="删除函数"><a href="#删除函数" class="headerlink" title="删除函数"></a>删除函数</h3><ul><li><code>erase(iterator it)</code>:删除向量中迭代器指向元素</li><li><code>erase(iterator first, iterator last)</code>:删除区间内的元素</li><li><code>pop_back()</code>:删除最后一个元素</li><li><code>clear()</code>:清除所有元素</li></ul><h3 id="遍历函数"><a href="#遍历函数" class="headerlink" title="遍历函数"></a>遍历函数</h3><ul><li><code>at(int pos)</code>:返回pos元素位置的引用</li><li><code>front()</code>:首元素的引用</li><li><code>back()</code>:末尾元素的引用</li><li><code>begin()</code>:首元素的指针</li><li><code>end()</code>:末尾元素的指针</li></ul><h3 id="其他函数"><a href="#其他函数" class="headerlink" title="其他函数"></a>其他函数</h3><ul><li><code>bool empty() const</code>:判断向量是否为空</li><li><code>size()</code>:向量中元素的个数</li><li><code>capacity()</code>:向量所能容纳最大元素值</li><li><code>swap(vector&amp;)</code>:交换两个同类型向量的数据</li><li><code>void assign(int n, const T&amp; x)</code>:设置前n个元素为x</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;vector&quot;&gt;&lt;a href=&quot;#vector&quot; class=&quot;headerlink&quot; title=&quot;vector&quot;&gt;&lt;/a&gt;vector&lt;/h2&gt;&lt;p&gt;vector是封装了动态大小数组的容器，能够存放各种类型的对象&lt;/p&gt;
+&lt;figure class=&quot;hig</summary>
+      
+    
+    
+    
+    
+    <category term="c++" scheme="http://zhaozekai.com/tags/c/"/>
+    
+  </entry>
   
   <entry>
     <title>生命权力/生命政治</title>
