@@ -9,7 +9,7 @@
     
     <title>
         
-            Tags |
+            函数与类模板特化 |
         
         ZZK&#39;s Blog
     </title>
@@ -193,7 +193,7 @@ mjx-container[display="true"] + br {
                         </li>
                     
                         <li class="menu-item">
-                            <a class="active"
+                            <a class=""
                                href="/tags"
                             >
                                 TAGS
@@ -240,7 +240,7 @@ mjx-container[display="true"] + br {
                 </li>
             
                 <li class="drawer-menu-item flex-center">
-                    <a class="active"
+                    <a class=""
                        href="/tags">TAGS</a>
                 </li>
             
@@ -264,15 +264,135 @@ mjx-container[display="true"] + br {
             <div class="main-content">
 
                 
-                    
-    <div class="fade-in-down-animation">
-        <div class="tagcloud-container">
-            <div class="tagcloud-content">
-                <a href="/tags/c/" style="font-size: 1.6rem;">c++</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 1rem;">离散数学</a>
-            </div>
-        </div>
-    </div>
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
 
+        <div class="article-title">
+            <span class="title-hover-animation">函数与类模板特化</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="https://cdn.jsdelivr.net/gh/zhaozkTHU/cdn/icon.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Zhao ZK</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-05-16 08:43:41</span>
+        <span class="mobile">2022-05-16 08:43</span>
+    </span>
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>669 Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>2 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="函数模板特化"><a href="#函数模板特化" class="headerlink" title="函数模板特化"></a>函数模板特化</h1><ul>
+<li><p>有时，有些类型并不合适，则需要对模板在某种情况下的具体类型进行特殊处理，这称为<strong>模板特化</strong></p>
+</li>
+<li><p>对于如下模板进行特化的两种方法</p>
+<p><code>template&lt;typename T&gt; T sum(T a, T b)</code></p>
+<ul>
+<li><p>在函数名后用&lt;&gt;括起具体类型</p>
+<p><code>template&lt;&gt; char* sum&lt;char*&gt;(char* a, char* b)</code></p>
+</li>
+<li><p>由编译器推导出具体类型，函数名为普通形式</p>
+<p><code>template&lt;&gt; char* sum(char* a, char* b)</code></p>
+</li>
+</ul>
+</li>
+<li><p>注意：对于<strong>函数模板</strong>，如果由多个模板参数，则特化时必须提供所有参数的特例类型，<strong>不能部分特化</strong></p>
+<p>但可以使用重载来替代部分特化</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> T, <span class="hljs-keyword">class</span> A&gt;</span><br><span class="hljs-function">T <span class="hljs-title">sum</span><span class="hljs-params">(<span class="hljs-type">const</span> A&amp; val1, <span class="hljs-type">const</span> A&amp; val2)</span> </span>{<br>    cout &lt;&lt; <span class="hljs-string">"using template"</span> &lt;&lt; endl;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">T</span>(val1 + val2);<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> A&gt;</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">sum</span><span class="hljs-params">(<span class="hljs-type">const</span> A&amp; val1, <span class="hljs-type">const</span> A&amp; val2)</span> </span>{<br>    cout &lt;&lt; <span class="hljs-string">"overload"</span> &lt;&lt; endl;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">int</span>(val1 + val2);<br>}<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>    <span class="hljs-type">float</span> y = <span class="hljs-built_in">sum</span>&lt;<span class="hljs-type">float</span>, <span class="hljs-type">float</span>&gt;(<span class="hljs-number">1.4</span>, <span class="hljs-number">2.4</span>);<br>    cout &lt;&lt; y &lt;&lt; endl;<br>    <span class="hljs-type">int</span> x = <span class="hljs-built_in">sum</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>);<br>    cout &lt;&lt; x &lt;&lt; endl;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br><span class="hljs-comment">//using template</span><br><span class="hljs-comment">//3.8</span><br><span class="hljs-comment">//overload</span><br><span class="hljs-comment">//3</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>函数模板重载解析顺序：</p>
+<p>类型匹配的普通函数-&gt;基础函数模板-&gt;全特化函数模板</p>
+<ul>
+<li>如果由普通函数且类型匹配，则直接选中，重载解析结束</li>
+<li>如果没有类型匹配的普通函数，则选择<strong>最合适</strong>的基础模板</li>
+<li>如果选中的基础模板有<strong>全特化版本</strong>且<strong>类型匹配</strong>，则选择全特化版本，否则使用基础模板</li>
+</ul>
+</li>
+</ul>
+<h1 id="类模板特化"><a href="#类模板特化" class="headerlink" title="类模板特化"></a>类模板特化</h1><ul>
+<li><p>对于类模板，也可以进行特化</p>
+</li>
+<li><p>对于以下模板</p>
+<p><code>template&lt;typename T1, typenameT2&gt; class A {...};</code></p>
+<p>与函数模板类似，可以进行全部特化：</p>
+<p><code>template&lt;&gt; class A&lt;int, int&gt; {...};</code></p>
+</li>
+<li><p>对于类模板，还允许<strong>部分特化</strong>，即只部分限制模板的通用性，如通用模板为：</p>
+<p><code>template&lt;typename T1, typename T2&gt; class A {...};</code></p>
+<p>部分特化：第二个类型指定为int</p>
+<p><code>template&lt;typename T1&gt; class A&lt;T1, int&gt; {...};</code></p>
+</li>
+</ul>
+<h1 id="模板特化总结"><a href="#模板特化总结" class="headerlink" title="模板特化总结"></a>模板特化总结</h1><ul>
+<li><strong>类模板</strong>可以<strong>部分特化</strong>或者<strong>全部特化</strong>，编译器会根据调用时的类型参数自动选择合适的模板类</li>
+<li><strong>函数模板</strong>只能<strong>全部特化</strong>，但可以通过<strong>重载</strong>代替部分特化的实现。编译器在编译阶段决定使用特化函数或者标准模板函数</li>
+<li>函数模板的全特化啊版本的匹配优先级<strong>可能低于</strong>重载的非特化基础函数模板，因此最好不要使用全特化函数模板而直接使用重载函数</li>
+</ul>
+
+        </div>
+
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/uncategorized/%E7%BE%A4%E8%AE%BA/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">群论</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
 
 
                 
@@ -317,6 +437,23 @@ mjx-container[display="true"] + br {
         </div>
     </div>
 
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
     
 
     <div class="right-bottom-side-tools">
@@ -371,6 +508,14 @@ mjx-container[display="true"] + br {
 
     </div>
 
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF%E7%89%B9%E5%8C%96"><span class="nav-number">1.</span> <span class="nav-text">函数模板特化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B1%BB%E6%A8%A1%E6%9D%BF%E7%89%B9%E5%8C%96"><span class="nav-number">2.</span> <span class="nav-text">类模板特化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E7%89%B9%E5%8C%96%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">模板特化总结</span></a></li></ol>
+    </div>
+</div>
+        </aside>
     
 
     <div class="image-viewer-container">
@@ -428,6 +573,8 @@ mjx-container[display="true"] + br {
 
 
 <div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
     
 </div>
 
